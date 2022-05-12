@@ -1,0 +1,37 @@
+<label for="cat"><h4>categories : </h4></label>
+
+<select name="cat" id="cat"
+          [(ngModel)]="selCatID">
+  <option value=0>
+    Select Category</option>
+    <option *ngFor="let item of categoryList" [value]="item.id">
+      {{item.name}}</option>
+</select>
+
+<app-products class="col-5" [receivedSelCatID]="selCatID"
+                        (onAddToCart)="addToCartList($event)"></app-products>
+
+  <table class="table table-bordered table-dark">
+    <thead>
+      <tr>
+        <th >Product Name</th>
+        <th >Product Price</th>
+        <th >Product Count</th>
+        <th >total price</th>
+        <th >remove</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of CartList">
+        <td>{{item.ProductName}}</td>
+        <td>{{item.ProductPrice |currency: 'EGP'}}</td>
+        <td>{{item.ProductCount}}</td>
+        <td>{{item.ProductCount*item.ProductPrice}}</td>
+      <td><button type="button" class="btn btn-secondary" (click)="removeFromCart(item)">remove</button></td>
+
+        </tr>
+    </tbody>
+  </table>
+  <label for="">order total price : {{orderTotalPrice}}</label>
+  <button type="button" class="btn btn-secondary" (click)="ngAfterViewInit()">Place Order</button>
+

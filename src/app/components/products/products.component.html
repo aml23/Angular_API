@@ -1,0 +1,72 @@
+
+<br>
+<br>
+<br>
+<table class="table " >
+  <thead>
+    <tr>
+      <th>Name</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th>Img</th>
+    <th>CateogryID</th>
+    <th>product Details</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    <th>count</th>
+    <th>Add to Cart</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let item of newProductList" >
+    <tr ProductCard [ngStyle]="{'background-color':item.quantity==1? 'yellow':'lightgray'}"
+        [hidden]="item.quantity==0">
+    <td>{{item.name}}</td>
+      <td>
+        {{item.quantity}}
+      </td>
+      <td>{{item.price | currency: 'EGP'}}</td>
+      <td><img [src]="item.img" width=50px, height=50px></td>
+      <td>{{item.cateogryID}}</td>
+      <td><button type="button" class="btn btn-secondary"
+        #myID [value]="item.id" (click)="openProductDetails(item.id)">Details</button></td>
+      <td><button type="button" class="btn btn-secondary"
+        #myID [value]="item.id" (click)="EditProduct(item.id)">Edit</button></td>
+        <td><button type="button" class="btn btn-secondary"
+          #myID [value]="item.id" (click)="DeleteProduct(item.id)">Delete</button></td>
+      <td><input #Count type="number" class="form-control"></td>
+      <td><button type="button" class="btn btn-secondary" (click)="updateCart(+Count.value,item)">Add to cart</button></td>
+
+    </tr>
+    </ng-container>
+   </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
